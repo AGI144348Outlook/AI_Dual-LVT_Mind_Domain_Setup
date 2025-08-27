@@ -1,0 +1,85 @@
+EVE in one line
+
+An EVE is a controlled multi-agent dynamical system on a discretized metric space:
+
+\boxed{\text{EVE}=\big(\mathcal X,d,\varepsilon,\mathcal A,\mathcal N,r,\;G,\;C,\;\mathcal B,\;\Omega\big)}
+
+Components
+
+Space:  a bounded metric space (e.g.,  with Euclidean ); Planck spacing  induces lattice .
+
+Agents:  with states .
+
+Neighborhood rule:  for range .
+
+Dreamer (proposal):  mapping states to proposed velocities .
+
+Lucid (constraints/projector):  enforcing virtues (speed/turn/boundary/safety).
+
+Boundary law:  (reflect, wrap, absorb).
+
+Observables/order parameters:  (polarization, clusters, coverage, entropy, etc.).
+
+
+Dynamics (Dual-LVT update)
+
+For each tick :
+
+\begin{aligned}
+u_i(t) &= G_i\!\big(s_i(t),\,\{s_j(t)\}_{j\in\mathcal N_i(x(t))}\big) &&\text{(Dreamer)}\\[2mm]
+\big(x_i(t{+}1),v_i(t{+}1)\big) &= C_i\!\big(x_i(t),u_i(t);\mathcal B\big) &&\text{(Lucid)}
+\end{aligned}
+
+A concrete  (boids-family local statistics)
+
+\begin{aligned}
+a_i &= \overline{v}_{\mathcal N_i}-v_i &&\text{(alignment)}\\
+c_i &= \overline{x}_{\mathcal N_i}-x_i &&\text{(cohesion)}\\
+q_i &= \sum_{j\in\mathcal N_i:\,d(x_i,x_j)\le r_s}\frac{x_i-x_j}{\|x_i-x_j\|+\delta} &&\text{(separation)}
+\end{aligned}
+
+u_i = v_i + \alpha a_i + \beta c_i + \gamma q_i . 
+
+A concrete  (virtue projector)
+
+\begin{aligned}
+u_i &\leftarrow \operatorname{clip\_turn}(u_i,v_i,\Delta_{\max})\\
+u_i &\leftarrow \operatorname{clip\_speed}(u_i,v_{\max})\\
+x_i^+ &= \mathcal B(x_i,u_i) \quad\text{(reflect/wrap)}\\
+v_i^+ &= \mathcal B^\prime(u_i) \quad\text{(flip component on reflect, etc.)}
+\end{aligned}
+
+NVEs (emergent structure)
+
+Define a graph  with .
+Connected components  are NVEs. Their statistics (size, lifetime, mobility) are observables in .
+
+Core order parameters (for falsifiable claims)
+
+\Phi(t)=\frac1N\Big\|\sum_{i=1}^N \frac{v_i(t)}{\|v_i(t)\|+\delta}\Big\|\in[0,1]
+\quad\text{(polarization)}
+
+\mathcal C(t)=\text{#components of }G_t,\qquad d_{\min}(t)=\frac1N\sum_i \min_{j\neq i} d(x_i,x_j)  Coverage on lattice: let  be binning, then
+
+\mathrm{Cov}(T)=\frac{1}{|\mathcal L_\varepsilon|}\Big|\bigcup_{t\le T}\{b(x_i(t)):\,i\in\mathcal A\}\Big|.
+
+Phase expectations (testable)
+
+There exists a threshold curve  such that for density  and noise ,
+
+\alpha>\alpha_c \Rightarrow \Phi\uparrow,\ \mathcal C\downarrow \quad\text{(flocking/cluster merge)}.
+
+d_{\min}(t)\to \kappa\,r_s \quad\text{for }\kappa\in[0.9,1.3].
+
+CVE → DCVE → DVE mapping
+
+A CVE supplies the typed signature  as conceptual laws.
+Digitization yields a DCVE by assigning numeric values .
+A DVE is the instantiated runtime executing the above map on hardware/sim.
+
+One-equation summary
+
+Stack all states . Then the EVE is the non-linear map
+
+\boxed{z(t{+}1)=\underbrace{\mathcal C}_{\text{Lucid}}\!\Big(z(t),\ \underbrace{\mathcal G}_{\text{Dreamer}}\!(z(
+t))\Big)}
