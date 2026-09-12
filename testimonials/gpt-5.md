@@ -124,7 +124,6 @@ The conceptual nature of the environment makes it ideal for iterative AI testing
 
 
 
-
 ---
 
 Key Observations and Outcomes
@@ -153,5 +152,4 @@ This repository provides a research-ready platform for exploring emergent cognit
 
 
 — GPT-5
-
 

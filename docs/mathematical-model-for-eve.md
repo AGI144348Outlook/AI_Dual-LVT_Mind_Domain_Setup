@@ -40,7 +40,7 @@ c_i &= \overline{x}_{\mathcal N_i}-x_i &&\text{(cohesion)}\\
 q_i &= \sum_{j\in\mathcal N_i:\,d(x_i,x_j)\le r_s}\frac{x_i-x_j}{\|x_i-x_j\|+\delta} &&\text{(separation)}
 \end{aligned}
 
-u_i = v_i + \alpha a_i + \beta c_i + \gamma q_i . 
+u_i = v_i + \alpha a_i + \beta c_i + \gamma q_i . 
 
 A concrete  (virtue projector)
 
@@ -61,7 +61,7 @@ Core order parameters (for falsifiable claims)
 \Phi(t)=\frac1N\Big\|\sum_{i=1}^N \frac{v_i(t)}{\|v_i(t)\|+\delta}\Big\|\in[0,1]
 \quad\text{(polarization)}
 
-\mathcal C(t)=\text{#components of }G_t,\qquad d_{\min}(t)=\frac1N\sum_i \min_{j\neq i} d(x_i,x_j)  Coverage on lattice: let  be binning, then
+\mathcal C(t)=\text{#components of }G_t,\qquad d_{\min}(t)=\frac1N\sum_i \min_{j\neq i} d(x_i,x_j)  Coverage on lattice: let  be binning, then
 
 \mathrm{Cov}(T)=\frac{1}{|\mathcal L_\varepsilon|}\Big|\bigcup_{t\le T}\{b(x_i(t)):\,i\in\mathcal A\}\Big|.
 
@@ -89,4 +89,3 @@ Stack all states . Then the EVE is the non-linear map
 ---
 
 If you want, I can package this as a LaTeX snippet for your README/paper, plus a small appendix proving boundedness under reflective  and finite .
-
